@@ -4,144 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Bharat Quest - Discover the Spirit of India</title>
-
+    
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    
     <style>
-        /* Base Styles */
         :root {
-            --primary-bg-color: #FFFFFF; --primary-text-color: #2F4F4F; --accent-color: #FF9933; --footer-bg-color: #F5F5F5;
-            --dark-gray: #666666; --border-color: #E0E0E0; --shadow-light: 0 2px 10px rgba(0,0,0,0.08); --shadow-hover: 0 10px 40px rgba(0,0,0,0.2);
-            --gradient-primary: linear-gradient(135deg, var(--accent-color), #FFB366); --gradient-hero: linear-gradient(135deg, rgba(47, 79, 79, 0.8), rgba(255, 153, 51, 0.4));
-            --transition-medium: 0.3s ease; --radius-large: 20px; --radius-full: 50px;
-            --spacing-sm: 1rem; --spacing-md: 1.5rem; --spacing-lg: 2rem; --spacing-xl: 3rem; --spacing-xxl: 4rem;
+            --primary-bg-color: #FFFFFF;
+            --primary-text-color: #2F4F4F;
+            --accent-color: #FF9933;
+            --footer-bg-color: #F8F9FA;
+            --dark-gray: #6c757d;
+            --border-color: #dee2e6;
+            --shadow-light: 0 4px 15px rgba(0,0,0,0.07);
+            --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
+            --transition-medium: 0.3s ease-in-out;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: var(--primary-text-color); background-color: var(--primary-bg-color); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            background-color: var(--primary-bg-color);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* Header & Nav */
-        .header { background: #FFFFFF; box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 1000; padding: var(--spacing-sm) 0; }
+        /* Reading Progress Bar */
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: transparent; z-index: 1001; }
+        .progress-bar { height: 100%; background: var(--accent-color); width: 0%; }
+        
+        /* Header */
+        .header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 1000; padding: 1rem 0; }
         .header-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--primary-text-color); text-decoration: none; }
-        .nav-list { display: flex; list-style: none; gap: var(--spacing-lg); }
-        .nav-link { text-decoration: none; color: var(--primary-text-color); font-weight: 500; position: relative; transition: var(--transition-medium); padding-bottom: 5px; }
+        .nav-list { display: flex; list-style: none; gap: 2rem; }
+        .nav-link { text-decoration: none; color: var(--primary-text-color); font-weight: 600; position: relative; padding-bottom: 5px; transition: var(--transition-medium); }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; margin: auto; width: 0%; height: 2px; background: var(--accent-color); transition: var(--transition-medium); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover, .nav-link.active { color: var(--accent-color); }
-        .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--accent-color); }
-
+        
         /* Hero Section */
-        .hero { height: 80vh; background: var(--gradient-hero), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero-content { max-width: 800px; padding: var(--spacing-lg); }
-        .hero-title { font-family: 'Poppins', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: var(--spacing-md); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .hero-subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: var(--spacing-xl); text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-        .hero-cta { background: var(--gradient-primary); color: white; text-decoration: none; padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-full); font-weight: 600; transition: var(--transition-medium); box-shadow: var(--shadow-light); }
-        .hero-cta:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-
+        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=2000&q=80') center center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero-title { font-family: 'Poppins', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; }
+        .hero-subtitle { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 2rem; max-width: 600px; }
+        .hero-cta { background: var(--accent-color); color: white; text-decoration: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 700; transition: var(--transition-medium); }
+        .hero-cta:hover { background: #e68a00; transform: translateY(-3px); }
+        
         /* Main Content */
-        .main { padding: var(--spacing-xxl) 0; }
-        .section-header { text-align: center; margin-bottom: var(--spacing-xl); }
-        .section-title { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 4vw, 3rem); position: relative; display: inline-block; padding-bottom: 10px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient-primary); }
-
+        .main { padding: 4rem 0; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 2.5rem; }
+        
         /* Articles Grid */
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-xl); }
-        .article-card { background: var(--primary-bg-color); border-radius: var(--radius-large); overflow: hidden; box-shadow: var(--shadow-light); transition: var(--transition-medium); }
-        .article-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-        .article-image { width: 100%; height: 220px; background-size: cover; background-position: center; }
-        .article-content { padding: var(--spacing-xl); }
-        .article-category { font-size: 0.8rem; font-weight: 600; color: var(--accent-color); margin-bottom: 0.5rem; display: block; }
-        .article-title { font-family: 'Poppins', sans-serif; font-size: 1.4rem; line-height: 1.4; margin-bottom: 0.5rem; color: var(--primary-text-color); }
-        .article-excerpt { color: var(--dark-gray); margin-bottom: var(--spacing-lg); }
-        .read-more-btn { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+        .article-card { background: var(--primary-bg-color); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow-light); transition: var(--transition-medium); }
+        .article-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .article-image { position: relative; width: 100%; height: 240px; background-size: cover; background-position: center; }
+        .article-category { position: absolute; top: 1rem; left: 1rem; background: var(--accent-color); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+        .article-reading-time { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; }
+        .article-content { padding: 1.5rem; }
+        .article-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--dark-gray); margin-bottom: 1rem; }
+        .article-title { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .article-excerpt { margin-bottom: 1.5rem; }
+        .read-more-btn { color: var(--accent-color); text-decoration: none; font-weight: 700; }
 
         /* Footer */
-        .footer { background: var(--footer-bg-color); padding: var(--spacing-xxl) 0 var(--spacing-lg); }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-xl); }
-        .footer-title { font-family: 'Poppins', sans-serif; font-size: 1.3rem; margin-bottom: var(--spacing-md); }
+        .footer { background: var(--footer-bg-color); padding: 4rem 0 2rem 0; border-top: 1px solid var(--border-color); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+        .footer-title { font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
         .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: var(--spacing-sm); }
+        .footer-links li { margin-bottom: 0.5rem; }
         .footer-links a { color: var(--dark-gray); text-decoration: none; }
-        .social-icons { display: flex; gap: var(--spacing-md); }
-        .social-icon { color: var(--primary-text-color); text-decoration: none; font-size: 1.2rem; }
-        .footer-bottom { text-align: center; padding-top: var(--spacing-lg); border-top: 1px solid var(--border-color); }
+        .social-icons { display: flex; gap: 1rem; }
+        .social-icon { color: var(--primary-text-color); font-size: 1.2rem; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); }
 
+        .mobile-menu-toggle { display: none; }
         @media (max-width: 768px) {
             .nav-list { display: none; }
+            .mobile-menu-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
         }
     </style>
 </head>
 <body>
 
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
     <header class="header">
-        <div class="container">
-            <div class="header-container">
-                <a class="logo" href="/">The Bharat Quest</a>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a class="nav-link active" href="#">Home</a></li>
-                        <li><a class="nav-link" href="#">Science</a></li>
-                        <li><a class="nav-link" href="#">History</a></li>
-                        <li><a class="nav-link" href="#">Biographies</a></li>
-                        <li><a class="nav-link" href="#">Innovation</a></li>
-                        <li><a class="nav-link" href="#">About Us</a></li>
-                        <li><a class="nav-link" href="#">Contact Us</a></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="container header-container">
+            <a href="#" class="logo">The Bharat Quest</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link">Science</a></li>
+                    <li><a href="#" class="nav-link">History</a></li>
+                    <li><a href="#" class="nav-link">Biographies</a></li>
+                    <li><a href="#" class="nav-link">Innovation</a></li>
+                    <li><a href="#" class="nav-link">About Us</a></li>
+                    <li><a href="#" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
     <section class="hero" data-aos="fade-in">
         <div class="hero-content">
             <h1 class="hero-title">Discover the Spirit of India</h1>
-            <p class="hero-subtitle">Embark on a journey through India's rich heritage of science, innovation, and inspiring stories.</p>
-            <a class="hero-cta" href="#featured-articles">Start Exploring</a>
+            <p class="hero-subtitle">Embark on a journey through India's rich heritage of science, innovation, and inspiring stories that shape our nation's future.</p>
+            <a href="#featured-articles" class="hero-cta">Start Exploring</a>
         </div>
     </section>
 
     <main class="main" id="featured-articles">
         <div class="container">
-            <section>
-                <div class="section-header" data-aos="fade-up">
-                    <h2 class="section-title">Latest Articles</h2>
-                </div>
-                <div class="articles-grid">
-                    <article class="article-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="article-content">
-                            <span class="article-category">SCIENCE</span>
-                            <h3 class="article-title">The Story of ISRO's Chandrayaan Mission</h3>
-                            <p class="article-excerpt">Discover how India's space program achieved the impossible...</p>
-                            <a class="read-more-btn" href="#">Read More</a>
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Latest Articles</h2>
+            </div>
+            <div class="articles-grid">
+                <article class="article-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">Science</span>
+                        <span class="article-reading-time"><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>By Dr. Priya Sharma</span>
+                            <span>Dec 15, 2024</span>
                         </div>
-                    </article>
-                    <article class="article-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="article-content">
-                            <span class="article-category">HISTORY</span>
-                            <h3 class="article-title">Ancient Indian Mathematics</h3>
-                            <p class="article-excerpt">Explore the revolutionary mathematical concepts from ancient India...</p>
-                            <a class="read-more-btn" href="#">Read More</a>
+                        <h3 class="article-title">The Story of ISRO's Chandrayaan Mission</h3>
+                        <p class="article-excerpt">Discover how India's space program achieved the impossible with innovative engineering and determination...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+                <article class="article-card" data-aos="fade-up" data-aos-delay="200">
+                     <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">History</span>
+                        <span class="article-reading-time"><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                    <div class="article-content">
+                         <div class="article-meta">
+                            <span>By Prof. Rajesh Kumar</span>
+                            <span>Dec 12, 2024</span>
                         </div>
-                    </article>
-                    <article class="article-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="article-content">
-                            <span class="article-category">BIOGRAPHIES</span>
-                            <h3 class="article-title">Dr. A.P.J. Abdul Kalam</h3>
-                            <p class="article-excerpt">The inspiring journey of India's Missile Man who became the most beloved President...</p>
-                            <a class="read-more-btn" href="#">Read More</a>
+                        <h3 class="article-title">Ancient Indian Mathematics: Zero to Infinity</h3>
+                        <p class="article-excerpt">Explore the revolutionary mathematical concepts that originated in ancient India and transformed global understanding...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+                <article class="article-card" data-aos="fade-up" data-aos-delay="300">
+                     <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">Biographies</span>
+                         <span class="article-reading-time"><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                    <div class="article-content">
+                         <div class="article-meta">
+                            <span>By Anita Desai</span>
+                            <span>Dec 10, 2024</span>
                         </div>
-                    </article>
-                </div>
-            </section>
+                        <h3 class="article-title">Dr. A.P.J. Abdul Kalam: The People's President</h3>
+                        <p class="article-excerpt">The inspiring journey of India's Missile Man who became the most beloved President, bridging science and humanity...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+                 <article class="article-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">Innovation</span>
+                        <span class="article-reading-time"><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>By Vikram Singh</span>
+                            <span>Dec 8, 2024</span>
+                        </div>
+                        <h3 class="article-title">India's Digital Revolution: Villages to Silicon Valley</h3>
+                        <p class="article-excerpt">How India transformed from a developing nation to a global technology powerhouse, empowering millions...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+                 <article class="article-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">Innovation</span>
+                        <span class="article-reading-time"><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>By Dr. Meera Patel</span>
+                            <span>Dec 5, 2024</span>
+                        </div>
+                        <h3 class="article-title">India's Green Energy Revolution</h3>
+                        <p class="article-excerpt">Discover how India is leading the world in renewable energy adoption and sustainable development...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+                 <article class="article-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80');">
+                        <span class="article-category">History</span>
+                        <span class="article-reading-time"><i class="far fa-clock"></i> 9 min read</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>By Arjun Reddy</span>
+                            <span>Dec 3, 2024</span>
+                        </div>
+                        <h3 class="article-title">Engineering Marvels of Ancient India</h3>
+                        <p class="article-excerpt">Uncover the incredible engineering achievements of ancient Indian civilizations, from Harappa to the iron pillar of Delhi...</p>
+                        <a href="#" class="read-more-btn">Read More →</a>
+                    </div>
+                </article>
+            </div>
         </div>
     </main>
 
@@ -150,22 +227,23 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3 class="footer-title">About The Bharat Quest</h3>
-                    <p>An inspiring platform for India's youth, focusing on science, history, and innovation.</p>
+                    <p>A knowledge-driven platform to inspire India's youth with stories of science, history, and innovation, fostering intellectual growth.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                     <h3 class="footer-title">Connect</h3>
+                    <h3 class="footer-title">Connect With Us</h3>
                     <div class="social-icons">
-                        <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -174,15 +252,24 @@
             </div>
         </div>
     </footer>
-
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
+      // AOS Initialization
       AOS.init({
         duration: 800,
         once: true
       });
-    </script>
 
+      // Reading Progress Bar
+      window.onscroll = function() {progressBarScroll()};
+      function progressBarScroll() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      }
+    </script>
+    
 </body>
 </html>
