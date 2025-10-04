@@ -1,275 +1,2104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags for SEO and Responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bharat Quest - Discover the Spirit of India</title>
+    <meta name="description" content="The Bharat Quest - An inspiring educational platform for India's youth featuring science, history, innovation, and biographies">
+    <meta name="keywords" content="India, education, science, history, innovation, biographies, youth, learning">
+    <meta name="author" content="The Bharat Quest">
+    <meta name="robots" content="index, follow">
     
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="The Bharat Quest - Discover the Spirit of India">
+    <meta property="og:description" content="Embark on a journey through India's rich heritage of science, innovation, and inspiring stories">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thebharatquest.com">
     
+    <!-- Page Title -->
+    <title>The Bharat Quest - Discover the Spirit of India | Educational Blog</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇳</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
+        /* ===== CSS VARIABLES FOR THEMING ===== */
         :root {
+            /* Primary Colors */
             --primary-bg-color: #FFFFFF;
             --primary-text-color: #2F4F4F;
             --accent-color: #FF9933;
-            --footer-bg-color: #F8F9FA;
-            --dark-gray: #6c757d;
-            --border-color: #dee2e6;
-            --shadow-light: 0 4px 15px rgba(0,0,0,0.07);
-            --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
-            --transition-medium: 0.3s ease-in-out;
+            --accent-hover: #E8851F;
+            --footer-bg-color: #F5F5F5;
+            
+            /* Secondary Colors */
+            --light-gray: #F8F9FA;
+            --medium-gray: #E5E5E5;
+            --dark-gray: #666666;
+            --border-color: #E0E0E0;
+            --success-color: #28A745;
+            --warning-color: #FFC107;
+            --danger-color: #DC3545;
+            
+            /* Shadows */
+            --shadow-light: 0 2px 10px rgba(0,0,0,0.08);
+            --shadow-medium: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-heavy: 0 8px 30px rgba(0,0,0,0.15);
+            --shadow-hover: 0 10px 40px rgba(0,0,0,0.2);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--accent-color), #FFB366);
+            --gradient-hero: linear-gradient(135deg, rgba(47, 79, 79, 0.8), rgba(255, 153, 51, 0.4));
+            --gradient-card: linear-gradient(145deg, #ffffff, #f8f9fa);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Border Radius */
+            --radius-small: 6px;
+            --radius-medium: 12px;
+            --radius-large: 20px;
+            --radius-full: 50px;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+
+        /* ===== GLOBAL RESET AND BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.7;
             color: var(--primary-text-color);
             background-color: var(--primary-bg-color);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* Reading Progress Bar */
-        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: transparent; z-index: 1001; }
-        .progress-bar { height: 100%; background: var(--accent-color); width: 0%; }
-        
-        /* Header */
-        .header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 1000; padding: 1rem 0; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--primary-text-color); text-decoration: none; }
-        .nav-list { display: flex; list-style: none; gap: 2rem; }
-        .nav-link { text-decoration: none; color: var(--primary-text-color); font-weight: 600; position: relative; padding-bottom: 5px; transition: var(--transition-medium); }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; margin: auto; width: 0%; height: 2px; background: var(--accent-color); transition: var(--transition-medium); }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
-        
-        /* Hero Section */
-        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=2000&q=80') center center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero-title { font-family: 'Poppins', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; }
-        .hero-subtitle { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 2rem; max-width: 600px; }
-        .hero-cta { background: var(--accent-color); color: white; text-decoration: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 700; transition: var(--transition-medium); }
-        .hero-cta:hover { background: #e68a00; transform: translateY(-3px); }
-        
-        /* Main Content */
-        .main { padding: 4rem 0; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-title { font-family: 'Poppins', sans-serif; font-size: 2.5rem; }
-        
-        /* Articles Grid */
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
-        .article-card { background: var(--primary-bg-color); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow-light); transition: var(--transition-medium); }
-        .article-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
-        .article-image { position: relative; width: 100%; height: 240px; background-size: cover; background-position: center; }
-        .article-category { position: absolute; top: 1rem; left: 1rem; background: var(--accent-color); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
-        .article-reading-time { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; }
-        .article-content { padding: 1.5rem; }
-        .article-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--dark-gray); margin-bottom: 1rem; }
-        .article-title { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .article-excerpt { margin-bottom: 1.5rem; }
-        .read-more-btn { color: var(--accent-color); text-decoration: none; font-weight: 700; }
+        /* ===== UTILITY CLASSES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
 
-        /* Footer */
-        .footer { background: var(--footer-bg-color); padding: 4rem 0 2rem 0; border-top: 1px solid var(--border-color); }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
-        .footer-title { font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 0.5rem; }
-        .footer-links a { color: var(--dark-gray); text-decoration: none; }
-        .social-icons { display: flex; gap: 1rem; }
-        .social-icon { color: var(--primary-text-color); font-size: 1.2rem; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+        .text-center {
+            text-align: center;
+        }
 
-        .mobile-menu-toggle { display: none; }
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ===== READING PROGRESS BAR ===== */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-primary);
+            transition: width var(--transition-fast);
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* ===== HEADER STYLES ===== */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+            transition: all var(--transition-medium);
+        }
+
+        .header.scrolled {
+            padding: var(--spacing-xs) 0;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ===== LOGO STYLES ===== */
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-text-color);
+            text-decoration: none;
+            position: relative;
+            transition: all var(--transition-medium);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo::before {
+            content: '🇮🇳';
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ===== NAVIGATION STYLES ===== */
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-small);
+            position: relative;
+            transition: all var(--transition-medium);
+            display: block;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all var(--transition-medium);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+            background: rgba(255, 153, 51, 0.1);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 80%;
+        }
+
+        /* ===== MOBILE MENU TOGGLE ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-text-color);
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-small);
+            transition: all var(--transition-medium);
+            position: relative;
+            z-index: 1001;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 153, 51, 0.1);
+            color: var(--accent-color);
+        }
+
+        .menu-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .menu-toggle .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: all var(--transition-medium);
+        }
+
+        .menu-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: var(--gradient-hero),
+                        url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: var(--spacing-lg);
+            animation: heroFadeIn 1.5s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 300;
+            margin-bottom: var(--spacing-xl);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-medium);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            padding: var(--spacing-xxl) 0;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-text-color);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ===== FEATURED ARTICLES GRID ===== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* ===== ARTICLE CARD STYLES ===== */
+        .article-card {
+            background: var(--primary-bg-color);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all var(--transition-medium);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+            z-index: 1;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+            transition: opacity var(--transition-medium);
+        }
+
+        .article-card:hover .article-image::before {
+            opacity: 0.7;
+        }
+
+        .article-category {
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-light);
+            z-index: 2;
+        }
+
+        .article-reading-time {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-small);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .article-content {
+            padding: var(--spacing-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-text-color);
+            line-height: 1.4;
+            transition: color var(--transition-medium);
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-color);
+        }
+
+        .article-excerpt {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .read-more-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .read-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .read-more-btn:hover::before {
+            left: 100%;
+        }
+
+        .read-more-btn i {
+            transition: transform var(--transition-medium);
+        }
+
+        .read-more-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            background: var(--light-gray);
+            padding: var(--spacing-xxl) 0;
+            margin: var(--spacing-xxl) 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--primary-text-color);
+            font-weight: 500;
+        }
+
+        /* ===== NEWSLETTER SECTION ===== */
+        .newsletter-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: var(--spacing-sm);
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-medium);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: var(--accent-color);
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer {
+            background: var(--footer-bg-color);
+            padding: var(--spacing-xxl) 0 var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-section {
+            padding: var(--spacing-lg);
+        }
+
+        .footer-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-text-color);
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .footer-text {
+            line-height: 1.7;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: all var(--transition-medium);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 16px;
+            text-align: center;
+        }
+
+        /* ===== SOCIAL MEDIA ICONS ===== */
+        .social-icons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-bg-color);
+            color: var(--primary-text-color);
+            border-radius: var(--radius-medium);
+            text-decoration: none;
+            transition: all var(--transition-medium);
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: translateY(100%);
+            transition: transform var(--transition-medium);
+        }
+
+        .social-icon i {
+            position: relative;
+            z-index: 2;
+            transition: color var(--transition-medium);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .social-icon:hover::before {
+            transform: translateY(0);
+        }
+
+        .social-icon:hover i {
+            color: white;
+        }
+
+        /* ===== FOOTER BOTTOM ===== */
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-bottom a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-medium);
+            transition: all var(--transition-medium);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ===== LOADING ANIMATION ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--spacing-lg);
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-list { display: none; }
-            .mobile-menu-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+            /* Mobile Navigation */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-list {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: var(--spacing-xxl) var(--spacing-lg);
+                box-shadow: var(--shadow-heavy);
+                transition: right var(--transition-medium);
+                z-index: 1000;
+            }
+
+            .nav-list.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .nav-link {
+                display: block;
+                padding: var(--spacing-md);
+                border-radius: var(--radius-medium);
+                text-align: center;
+                font-size: 1.1rem;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                height: 80vh;
+                background-attachment: scroll;
+            }
+
+            .hero-content {
+                padding: var(--spacing-md);
+            }
+
+            /* Section spacing */
+            .main {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .section {
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .section-header {
+                margin-bottom: var(--spacing-lg);
+            }
+
+            /* Articles grid */
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            /* Newsletter form */
+            .newsletter-form {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            /* Stats grid */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-lg);
+            }
+
+            /* Footer */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content {
+                padding: var(--spacing-lg);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .back-to-top {
+                bottom: var(--spacing-md);
+                right: var(--spacing-md);
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .header,
+            .hero,
+            .newsletter-section,
+            .footer,
+            .back-to-top,
+            .progress-container {
+                display: none;
+            }
+
+            .main {
+                padding: 0;
+            }
+
+            .article-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        .nav-link:focus,
+        .read-more-btn:focus,
+        .social-icon:focus,
+        .menu-toggle:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --shadow-light: 0 2px 10px rgba(0,0,0,0.3);
+                --shadow-medium: 0 4px 20px rgba(0,0,0,0.4);
+                --shadow-heavy: 0 8px 30px rgba(0,0,0,0.5);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
 
-    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    <!-- Reading Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-    <header class="header">
-        <div class="container header-container">
-            <a href="#" class="logo">The Bharat Quest</a>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#" class="nav-link active">Home</a></li>
-                    <li><a href="#" class="nav-link">Science</a></li>
-                    <li><a href="#" class="nav-link">History</a></li>
-                    <li><a href="#" class="nav-link">Biographies</a></li>
-                    <li><a href="#" class="nav-link">Innovation</a></li>
-                    <li><a href="#" class="nav-link">About Us</a></li>
-                    <li><a href="#" class="nav-link">Contact Us</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+    <!-- ===== HEADER SECTION ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="#" class="logo" aria-label="The Bharat Quest - Home">
+                    <span>The Bharat Quest</span>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav" role="navigation" aria-label="Main navigation">
+                    <!-- Mobile Menu Toggle -->
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+
+                    <!-- Navigation Menu -->
+                    <ul class="nav-list" id="navMenu" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="#home" class="nav-link active" role="menuitem" aria-current="page">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#science" class="nav-link" role="menuitem">
+                                <i class="fas fa-flask" aria-hidden="true"></i>
+                                Science
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#history" class="nav-link" role="menuitem">
+                                <i class="fas fa-landmark" aria-hidden="true"></i>
+                                History
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#biographies" class="nav-link" role="menuitem">
+                                <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                                Biographies
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#innovation" class="nav-link" role="menuitem">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                Innovation
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#about" class="nav-link" role="menuitem">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                About Us
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="#contact" class="nav-link" role="menuitem">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <section class="hero" data-aos="fade-in">
-        <div class="hero-content">
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home" role="banner">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
             <h1 class="hero-title">Discover the Spirit of India</h1>
-            <p class="hero-subtitle">Embark on a journey through India's rich heritage of science, innovation, and inspiring stories that shape our nation's future.</p>
-            <a href="#featured-articles" class="hero-cta">Start Exploring</a>
+            <p class="hero-subtitle">
+                Embark on a journey through India's rich heritage of science, innovation, and inspiring stories that shape our nation's future. Join thousands of young minds exploring the incredible legacy of Bharat.
+            </p>
+            <a href="#featured-articles" class="hero-cta" aria-label="Explore our latest articles">
+                <i class="fas fa-rocket" aria-hidden="true"></i>
+                Start Exploring
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" onclick="document.getElementById('featured-articles').scrollIntoView({behavior: 'smooth'})" role="button" tabindex="0" aria-label="Scroll to content">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </div>
     </section>
 
-    <main class="main" id="featured-articles">
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main" role="main">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Latest Articles</h2>
-            </div>
-            <div class="articles-grid">
-                <article class="article-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">Science</span>
-                        <span class="article-reading-time"><i class="far fa-clock"></i> 8 min read</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span>By Dr. Priya Sharma</span>
-                            <span>Dec 15, 2024</span>
+            <!-- ===== FEATURED ARTICLES SECTION ===== -->
+            <section class="section" id="featured-articles" aria-labelledby="articles-title">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title" id="articles-title">Latest Articles</h2>
+                    <p class="section-subtitle">
+                        Dive into fascinating stories of Indian achievements, discoveries, and the brilliant minds that continue to inspire generations.
+                    </p>
+                </div>
+
+                <div class="articles-grid">
+                    <!-- Article Card 1 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="100" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="ISRO Chandrayaan Mission spacecraft">
+                            <span class="article-category">Science</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>8 min read</span>
+                            </div>
                         </div>
-                        <h3 class="article-title">The Story of ISRO's Chandrayaan Mission</h3>
-                        <p class="article-excerpt">Discover how India's space program achieved the impossible with innovative engineering and determination...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
-                    </div>
-                </article>
-                <article class="article-card" data-aos="fade-up" data-aos-delay="200">
-                     <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">History</span>
-                        <span class="article-reading-time"><i class="far fa-clock"></i> 6 min read</span>
-                    </div>
-                    <div class="article-content">
-                         <div class="article-meta">
-                            <span>By Prof. Rajesh Kumar</span>
-                            <span>Dec 12, 2024</span>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Dr. Priya Sharma</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 15, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">The Story of ISRO's Chandrayaan Mission</h3>
+                            <p class="article-excerpt">
+                                Discover how India's space program achieved the impossible with innovative engineering and determination. From humble beginnings to becoming the fourth nation to successfully land on the Moon, ISRO's journey is a testament to Indian scientific excellence and frugal innovation.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about ISRO's Chandrayaan Mission">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
                         </div>
-                        <h3 class="article-title">Ancient Indian Mathematics: Zero to Infinity</h3>
-                        <p class="article-excerpt">Explore the revolutionary mathematical concepts that originated in ancient India and transformed global understanding...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
-                    </div>
-                </article>
-                <article class="article-card" data-aos="fade-up" data-aos-delay="300">
-                     <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">Biographies</span>
-                         <span class="article-reading-time"><i class="far fa-clock"></i> 10 min read</span>
-                    </div>
-                    <div class="article-content">
-                         <div class="article-meta">
-                            <span>By Anita Desai</span>
-                            <span>Dec 10, 2024</span>
+                    </article>
+
+                    <!-- Article Card 2 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="200" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="Ancient Indian mathematical manuscripts">
+                            <span class="article-category">History</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>6 min read</span>
+                            </div>
                         </div>
-                        <h3 class="article-title">Dr. A.P.J. Abdul Kalam: The People's President</h3>
-                        <p class="article-excerpt">The inspiring journey of India's Missile Man who became the most beloved President, bridging science and humanity...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
-                    </div>
-                </article>
-                 <article class="article-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">Innovation</span>
-                        <span class="article-reading-time"><i class="far fa-clock"></i> 7 min read</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span>By Vikram Singh</span>
-                            <span>Dec 8, 2024</span>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Prof. Rajesh Kumar</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 12, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">Ancient Indian Mathematics: Zero to Infinity</h3>
+                            <p class="article-excerpt">
+                                Explore the revolutionary mathematical concepts that originated in ancient India and transformed global understanding of numbers and calculations. From Aryabhata's astronomical calculations to Brahmagupta's rules for zero, discover how Indian mathematicians laid the foundation for modern mathematics.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about Ancient Indian Mathematics">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
                         </div>
-                        <h3 class="article-title">India's Digital Revolution: Villages to Silicon Valley</h3>
-                        <p class="article-excerpt">How India transformed from a developing nation to a global technology powerhouse, empowering millions...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
-                    </div>
-                </article>
-                 <article class="article-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">Innovation</span>
-                        <span class="article-reading-time"><i class="far fa-clock"></i> 5 min read</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span>By Dr. Meera Patel</span>
-                            <span>Dec 5, 2024</span>
+                    </article>
+
+                    <!-- Article Card 3 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="300" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="Dr. A.P.J. Abdul Kalam portrait">
+                            <span class="article-category">Biographies</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>10 min read</span>
+                            </div>
                         </div>
-                        <h3 class="article-title">India's Green Energy Revolution</h3>
-                        <p class="article-excerpt">Discover how India is leading the world in renewable energy adoption and sustainable development...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
-                    </div>
-                </article>
-                 <article class="article-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80');">
-                        <span class="article-category">History</span>
-                        <span class="article-reading-time"><i class="far fa-clock"></i> 9 min read</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span>By Arjun Reddy</span>
-                            <span>Dec 3, 2024</span>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Anita Desai</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 10, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">Dr. A.P.J. Abdul Kalam: The People's President</h3>
+                            <p class="article-excerpt">
+                                The inspiring journey of India's Missile Man who became the most beloved President, bridging science and humanity with his vision. From selling newspapers as a child to becoming a renowned scientist and the 11th President of India, Dr. Kalam's life story continues to inspire millions of young Indians.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about Dr. A.P.J. Abdul Kalam">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
                         </div>
-                        <h3 class="article-title">Engineering Marvels of Ancient India</h3>
-                        <p class="article-excerpt">Uncover the incredible engineering achievements of ancient Indian civilizations, from Harappa to the iron pillar of Delhi...</p>
-                        <a href="#" class="read-more-btn">Read More →</a>
+                    </article>
+
+                    <!-- Article Card 4 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="400" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="Digital India technology innovation">
+                            <span class="article-category">Innovation</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>7 min read</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Vikram Singh</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 8, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">India's Digital Revolution: From Villages to Silicon Valley</h3>
+                            <p class="article-excerpt">
+                                How India transformed from a developing nation to a global technology powerhouse, empowering millions through digital innovation. Explore the journey of Digital India, from the world's largest biometric system Aadhaar to becoming the fastest-growing fintech market globally.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about India's Digital Revolution">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 5 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="500" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="Renewable energy solar panels in India">
+                            <span class="article-category">Innovation</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>5 min read</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Dr. Meera Patel</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 5, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">India's Green Energy Revolution</h3>
+                            <p class="article-excerpt">
+                                Discover how India is leading the world in renewable energy adoption and sustainable development. From the world's largest solar park to innovative wind energy solutions, explore India's commitment to a cleaner, greener future for the next generation.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about India's Green Energy Revolution">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 6 -->
+                    <article class="article-card" data-aos="fade-up" data-aos-delay="600" role="article">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')" role="img" aria-label="Ancient Indian architecture and engineering">
+                            <span class="article-category">History</span>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>9 min read</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span>Arjun Reddy</span>
+                                </div>
+                                <div class="article-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                                    <span>Dec 3, 2024</span>
+                                </div>
+                            </div>
+                            <h3 class="article-title">Engineering Marvels of Ancient India</h3>
+                            <p class="article-excerpt">
+                                Uncover the incredible engineering achievements of ancient Indian civilizations, from the sophisticated drainage systems of Harappa to the iron pillar of Delhi that has stood rust-free for over 1,600 years. These architectural wonders continue to amaze modern engineers.
+                            </p>
+                            <a href="#" class="read-more-btn" aria-label="Read full article about Engineering Marvels of Ancient India">
+                                Read More
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ===== STATS SECTION ===== -->
+            <section class="stats-section" data-aos="fade-up">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="50000">0</span>
+                            <span class="stat-label">Inspired Readers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span>
+                            <span class="stat-label">Articles Published</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="25">0</span>
+                            <span class="stat-label">Expert Contributors</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100">0</span>
+                            <span class="stat-label">Cities Reached</span>
+                        </div>
                     </div>
-                </article>
-            </div>
+                </div>
+            </section>
+
+            <!-- ===== NEWSLETTER SECTION ===== -->
+            <section class="newsletter-section" data-aos="fade-up">
+                <div class="container">
+                    <h2 class="newsletter-title">Stay Inspired</h2>
+                    <p class="newsletter-subtitle">
+                        Join our community of curious minds and receive weekly stories of Indian innovation and achievement.
+                    </p>
+                    <form class="newsletter-form" id="newsletterForm" novalidate>
+                        <input 
+                            type="email" 
+                            class="newsletter-input" 
+                            placeholder="Enter your email address" 
+                            required 
+                            aria-label="Email address for newsletter subscription"
+                            id="emailInput"
+                        >
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </section>
         </div>
     </main>
 
-    <footer class="footer">
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <!-- About Section -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="footer-title">About The Bharat Quest</h3>
-                    <p>A knowledge-driven platform to inspire India's youth with stories of science, history, and innovation, fostering intellectual growth.</p>
-                </div>
-                <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3 class="footer-title">Connect With Us</h3>
+                    <p class="footer-text">
+                        The Bharat Quest is dedicated to inspiring India's youth through stories of science, innovation, and the remarkable individuals who have shaped our nation's journey towards excellence and progress. We believe in the power of knowledge to transform lives and build a better future for Bharat.
+                    </p>
                     <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Follow us on Twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Subscribe to our YouTube channel" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Connect with us on LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li><a href="#science"><i class="fas fa-flask" aria-hidden="true"></i>Science</a></li>
+                        <li><a href="#history"><i class="fas fa-landmark" aria-hidden="true"></i>History</a></li>
+                        <li><a href="#biographies"><i class="fas fa-user-graduate" aria-hidden="true"></i>Biographies</a></li>
+                        <li><a href="#innovation"><i class="fas fa-lightbulb" aria-hidden="true"></i>Innovation</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle" aria-hidden="true"></i>About Us</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i>Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Support -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="footer-title">Connect With Us</h3>
+                    <p class="footer-text">
+                        Have a story to share or want to contribute to The Bharat Quest? We'd love to hear from you!
+                    </p>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@bharatquest.com"><i class="fas fa-envelope" aria-hidden="true"></i>hello@bharatquest.com</a></li>
+                        <li><a href="tel:+911234567890"><i class="fas fa-phone" aria-hidden="true"></i>+91 12345 67890</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>New Delhi, India</a></li>
+                        <li><a href="#"><i class="fas fa-rss" aria-hidden="true"></i>RSS Feed</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt" aria-hidden="true"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract" aria-hidden="true"></i>Terms of Service</a></li>
+                    </ul>
+                </div>
             </div>
+
             <div class="footer-bottom">
-                <p>© 2025 The Bharat Quest. All Rights Reserved.</p>
+                <p>&copy; 2025 The Bharat Quest. All Rights Reserved.</p>
+                <p>Made with ❤️ for the youth of India | <a href="#" target="_blank" rel="noopener noreferrer">Sitemap</a> | <a href="#" target="_blank" rel="noopener noreferrer">Accessibility</a></p>
             </div>
         </div>
     </footer>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      // AOS Initialization
-      AOS.init({
-        duration: 800,
-        once: true
-      });
 
-      // Reading Progress Bar
-      window.onscroll = function() {progressBarScroll()};
-      function progressBarScroll() {
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var scrolled = (winScroll / height) * 100;
-        document.getElementById("progressBar").style.width = scrolled + "%";
-      }
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+
+            // Hide loading overlay
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+
+            // Initialize all components
+            initializeNavigation();
+            initializeScrollEffects();
+            initializeAnimations();
+            initializeFormHandlers();
+            initializeAccessibility();
+        });
+
+        // ===== NAVIGATION FUNCTIONALITY =====
+        function initializeNavigation() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const header = document.getElementById('header');
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function() {
+                const isActive = navMenu.classList.contains('active');
+                
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', !isActive);
+                
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = isActive ? 'auto' : 'hidden';
+            });
+
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    // Handle smooth scrolling for anchor links
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const headerHeight = header.offsetHeight;
+                            const targetPosition = target.offsetTop - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+
+                    // Update active link
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // ===== SCROLL EFFECTS =====
+        function initializeScrollEffects() {
+            const progressBar = document.getElementById('progressBar');
+            const backToTop = document.getElementById('backToTop');
+            const header = document.getElementById('header');
+            let ticking = false;
+
+            function updateScrollEffects() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+
+                // Update progress bar
+                progressBar.style.width = scrollPercent + '%';
+
+                // Header scroll effect
+                if (scrollTop > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Back to top button
+                if (scrollTop > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                ticking = false;
+            }
+
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollEffects);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', requestTick);
+
+            // Back to top functionality
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Scroll indicator in hero
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const target = document.getElementById('featured-articles');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        }
+
+        // ===== ANIMATIONS =====
+        function initializeAnimations() {
+            // Counter animation for stats
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = parseInt(target.getAttribute('data-count'));
+                        animateCounter(target, finalValue);
+                        statsObserver.unobserve(target);
+                    }
+                });
+            }, observerOptions);
+
+            statNumbers.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+
+            function animateCounter(element, target) {
+                let current = 0;
+                const increment = target / 100;
+                const duration = 2000;
+                const stepTime = duration / 100;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current).toLocaleString();
+                }, stepTime);
+            }
+
+            // Article card hover effects
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+
+                // Click handler for entire card
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('read-more-btn')) {
+                        const readMoreBtn = this.querySelector('.read-more-btn');
+                        if (readMoreBtn) {
+                            readMoreBtn.click();
+                        }
+                    }
+                });
+            });
+
+            // Parallax effect for hero background
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < hero.offsetHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+        }
+
+        // ===== FORM HANDLERS =====
+        function initializeFormHandlers() {
+            const newsletterForm = document.getElementById('newsletterForm');
+            const emailInput = document.getElementById('emailInput');
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = emailInput.value.trim();
+                    
+                    if (!email) {
+                        showNotification('Please enter your email address.', 'error');
+                        return;
+                    }
+                    
+                    if (!isValidEmail(email)) {
+                        showNotification('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Simulate form submission
+                    const submitBtn = this.querySelector('.newsletter-btn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        showNotification('Thank you for subscribing! Welcome to The Bharat Quest community.', 'success');
+                        emailInput.value = '';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function showNotification(message, type) {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close" aria-label="Close notification">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                // Add styles
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    max-width: 400px;
+                    animation: slideIn 0.3s ease;
+                `;
+
+                // Add animation keyframes
+                if (!document.querySelector('#notification-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'notification-styles';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                        .notification-close {
+                            background: none;
+                            border: none;
+                            color: white;
+                            cursor: pointer;
+                            padding: 0.25rem;
+                            margin-left: auto;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+
+                document.body.appendChild(notification);
+
+                // Close functionality
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                });
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideOut 0.3s ease';
+                        setTimeout(() => notification.remove(), 300);
+                    }
+                }, 5000);
+            }
+        }
+
+        // ===== ACCESSIBILITY ENHANCEMENTS =====
+        function initializeAccessibility() {
+            // Keyboard navigation for custom elements
+            const interactiveElements = document.querySelectorAll('.article-card, .social-icon, .scroll-indicator');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // Focus management for mobile menu
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            menuToggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                    
+                    // Focus first menu item when opening
+                    if (navMenu.classList.contains('active')) {
+                        const firstLink = navMenu.querySelector('.nav-link');
+                        if (firstLink) {
+                            setTimeout(() => firstLink.focus(), 100);
+                        }
+                    }
+                }
+            });
+
+            // Escape key to close mobile menu
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                    menuToggle.focus();
+                }
+            });
+
+            // Announce page changes for screen readers
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const section = this.textContent.trim();
+                    announceToScreenReader(`Navigated to ${section} section`);
+                });
+            });
+
+            function announceToScreenReader(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = message;
+                
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
+            }
+
+            // Reduce motion for users who prefer it
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.style.scrollBehavior = 'auto';
+                
+                // Disable AOS animations
+                const aosElements = document.querySelectorAll('[data-aos]');
+                aosElements.forEach(el => {
+                    el.removeAttribute('data-aos');
+                    el.removeAttribute('data-aos-delay');
+                });
+            }
+        }
+
+        // ===== PERFORMANCE OPTIMIZATIONS =====
+        
+        // Lazy load images
+        function initializeLazyLoading() {
+            const images = document.querySelectorAll('.article-image[style*="background-image"]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '1';
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                imageObserver.observe(img);
+            });
+        }
+
+        // Initialize lazy loading when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeLazyLoading);
+        } else {
+            initializeLazyLoading();
+        }
+
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript error:', e.error);
+            // Could send error reports to analytics service here
+        });
+
+        // ===== SERVICE WORKER REGISTRATION (for PWA capabilities) =====
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Uncomment when you have a service worker file
+                // navigator.serviceWorker.register('/sw.js')
+                //     .then(registration => console.log('SW registered'))
+                //     .catch(error => console.log('SW registration failed'));
+            });
+        }
     </script>
-    
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9885ea70d69590d6',t:'MTc1OTQyNjEwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
